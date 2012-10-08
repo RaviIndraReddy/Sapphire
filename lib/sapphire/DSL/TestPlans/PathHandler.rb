@@ -4,7 +4,7 @@ module Sapphire
       class PathHandler
         def Handle(item)
           x = ""
-          x = AppConfig.Current.SpecsPath if AppConfig.Current
+          x = AppConfig.Current.SpecsPath if AppConfig.Current and AppConfig.Current.SpecsPath
           Dir[x + item + '*.rb'].each  do |file|
             load file
             Runner.instance.last_scenario.file_name = file

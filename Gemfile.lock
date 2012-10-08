@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    sapphire (0.8.3)
+    sapphire (0.8.4)
       Platform
       colorize
       ffi (= 1.0.9)
@@ -15,7 +15,6 @@ GEM
     childprocess (0.3.3)
       ffi (~> 1.0.6)
     colorize (0.5.8)
-    ffi (1.0.9)
     ffi (1.0.9-x86-mingw32)
     libwebsocket (0.1.3)
       addressable

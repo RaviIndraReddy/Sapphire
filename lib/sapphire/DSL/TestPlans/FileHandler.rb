@@ -4,7 +4,7 @@ module Sapphire
       class FileHandler
         def Handle(item)
           x = ""
-          x = AppConfig.Current.SpecsPath if AppConfig.Current
+          x = AppConfig.Current.SpecsPath if AppConfig.Current and AppConfig.Current.SpecsPath
           file = File.expand_path(item, __FILE__)
           file = File.expand_path(x + item, __FILE__) if !File.exists?(file)
           file = File.expand_path(File.dirname(__FILE__) + item) if !File.exists?(file)

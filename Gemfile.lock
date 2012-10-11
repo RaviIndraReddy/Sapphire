@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    sapphire (0.8.4)
+    sapphire (0.8.6)
       Platform
       colorize
       ffi (= 1.0.9)

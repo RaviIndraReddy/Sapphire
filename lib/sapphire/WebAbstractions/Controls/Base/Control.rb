@@ -61,9 +61,10 @@ module Sapphire
         sleep(1)
       end
 
-      def Visible(shouldWait = true)
-        control = self.Find if shouldWait
-        control = self.FindWithoutWait if !shouldWait
+      def Visible(shouldWait = true, comparator = nil)
+        control = self.Find comparator if shouldWait
+        control = self.FindWithoutWait comparator if !shouldWait
+        return ControlEvaluation.new(comparator.Compare(control.displayed?, true), true, self) if !comparator.nil?
         ControlEvaluation.new(control.displayed?, true, self)
       end
 
@@ -99,12 +100,12 @@ module Sapphire
           evaluation = block.call(self, value)
 
           wait = Selenium::WebDriver::Wait.new(:timeout => timeout)
-            result = wait.until {
-              evaluation = block.call(self, value)
-              y = evaluation.Evaluate()
-              comparator = EqualsComparison.new(evaluation) if evaluation == nil
-              evaluation if comparator.Compare(y == true, true)
-            }
+          result = wait.until {
+            evaluation = block.call(self, value)
+            y = evaluation.Evaluate()
+            comparator = EqualsComparison.new(evaluation) if evaluation == nil
+            evaluation if comparator.Compare(y == true, true)
+          }
 
           return result
         rescue

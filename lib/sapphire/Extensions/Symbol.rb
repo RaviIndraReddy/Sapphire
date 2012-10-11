@@ -56,7 +56,7 @@ class Symbol
 
   def Show(item, comparator)
     Examine(item, comparator) do |field, value|
-      field.Visible
+      field.Visible true, comparator
     end
   end
 
@@ -70,7 +70,6 @@ class Symbol
 
     element = field.Find(comparator)
     return Evaluation.new(true, true) if element.nil? and comparator.Compare(true, false)
-
     return Fix(field.Evaluate(key, item, comparator, block), comparator)
   end
 
